@@ -1,5 +1,5 @@
-FROM node:14-alpine AS build
-LABEL maintainer="Stille <stille@ioiox.com>"
+FROM node:16-alpine AS build
+LABEL maintainer="Andy <andyliukun@gmail.com>"
 
 ENV VERSION 2.0
 

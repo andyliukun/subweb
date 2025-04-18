@@ -1,10 +1,6 @@
 <template>
-  <html
-    lang="en"
-    class="light-style layout-navbar-fixed layout-compact layout-menu-fixed swal2-shown swal2-height-auto"
-    dir="ltr"
-  >
-    <div class="dialog-custom swal2-container swal2-center swal2-backdrop-show" style="overflow-y: auto">
+  <html lang="en" class="dialog-overlay" dir="ltr">
+    <div class="dialog" style="overflow-y: auto">
       <div
         aria-labelledby="swal2-title"
         aria-describedby="swal2-html-container"
@@ -69,6 +65,26 @@ export default {
 <style scoped>
 /* 当前 div 样式加上 z-index: 999999 用于覆盖其他组件 */
 .dialog-custom {
-  z-index: 1150;
+  z-index: 999999;
+}
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog {
+  background: #fff;
+  border-radius: 8px;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 </style>

@@ -33,7 +33,7 @@
                 <div class="col-8 col-md-10">
                   <label class="form-label" for="remote">远程配置</label>
                   <select class="form-select" id="remote" @change="selectRemoteConfig">
-                    <option value="">默认配置</option>
+                    <!--                    <option value="">默认配置</option>-->
                     <option v-for="option in remoteConfigOptions" :key="option" :value="option.value">
                       {{ option.text }}
                     </option>
@@ -49,7 +49,10 @@
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowMoreConfig">
                   <label class="form-label" for="add-user-email">可选参数</label>
-                  <div class="row g-3">
+                  <div class="row g-4">
+                    <div class="col-12 col-md-12">
+                      <input class="form-control" placeholder="文件名" v-model="moreConfig.filename" />
+                    </div>
                     <div class="col-12 col-md-12">
                       <input class="form-control" placeholder="Include: 可选" v-model="moreConfig.include" />
                     </div>
@@ -115,6 +118,7 @@ export default {
   name: 'SubTable',
   setup() {
     const DEFAULT_MORECONFIG = {
+      filename: '',
       include: '',
       exclude: '',
       emoji: true,
@@ -158,7 +162,7 @@ export default {
         subUrl: '',
         shortUrl: '',
       },
-      urls: [],
+      urls: '',
       api: window.config.apiUrl,
       target: 'clash',
       remoteConfig: '',
@@ -169,7 +173,7 @@ export default {
       this.isShowMoreConfig = !this.isShowMoreConfig;
     },
     selectApi(event) {
-      if (event.target.value == 'manual') {
+      if (event.target.value === 'manual') {
         this.api = '';
         this.isShowManualApiUrl = true;
       } else {
@@ -178,7 +182,7 @@ export default {
       }
     },
     selectRemoteConfig(event) {
-      if (event.target.value == 'manual') {
+      if (event.target.value === 'manual') {
         this.remoteConfig = '';
         this.isShowRemoteConfig = true;
       } else {
@@ -206,7 +210,7 @@ export default {
       }
     },
     getConverter() {
-      if (this.urls == '') {
+      if (this.urls === '') {
         this.$showDialog('warning', '注意', '请输入订阅链接或节点');
         return false;
       }
@@ -214,7 +218,7 @@ export default {
         this.$showDialog('warning', '注意', '请输入自定义后端 API 地址，或选择默认后端服务。');
         return false;
       }
-      if (this.remoteConfig == '' && this.isShowRemoteConfig) {
+      if (this.remoteConfig === '' && this.isShowRemoteConfig) {
         this.$showDialog('warning', '注意', '请输入远程配置地址，或选择默认配置。');
         return false;
       }

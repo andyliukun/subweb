@@ -6,10 +6,10 @@ const getSubLink = function (urls, api, target, remoteConfig, isShowMoreConfig, 
     finalUrl = finalUrl + '&config=' + encodeURIComponent(remoteConfig);
   }
   if (isShowMoreConfig) {
-    if (moreConfig.include != '') {
+    if (moreConfig.include !== '') {
       finalUrl = finalUrl + '&include=' + encodeURIComponent(moreConfig.include);
     }
-    if (moreConfig.exclude != '') {
+    if (moreConfig.exclude !== '') {
       finalUrl = finalUrl + '&exclude=' + encodeURIComponent(moreConfig.exclude);
     }
     if (moreConfig.emoji) {
@@ -43,11 +43,7 @@ const getSubLink = function (urls, api, target, remoteConfig, isShowMoreConfig, 
 
 const regexCheck = function (url) {
   const reg_url = /https?:\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/;
-  if (reg_url.test(url)) {
-    return true;
-  } else {
-    return false;
-  }
+  return reg_url.test(url);
 };
 
 export { regexCheck, getSubLink };
